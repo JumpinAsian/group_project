@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Checking from './components/Checking';
+import NewDeposit from './components/NewDeposit';
+import ShowDeposits from './components/ShowDeposits';
+import ShowWithdraws from './components/ShowWithdraws';
+import NewWithdraw from './components/NewWithdraw';
+import EditDeposit from './components/EditDeposit';
+import EditWithdraw from './components/EditWithdraw';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          {/* Automatically redirect to our main dashboard if the user enters a route not found */}
+          <Route path='*' element={<Checking />} />
+
+          {/* Read All */}
+          <Route path='/api/allExpenses' element={<Checking />} />
+          <Route path='/api/allDeposits' element={<ShowDeposits />} />
+          <Route path='/api/allWithdraws' element={<ShowWithdraws />} />
+
+          {/* Create */}
+          <Route path='/api/newDeposit' element={<NewDeposit />} />
+          <Route path='/api/newWithdraw' element={<NewWithdraw />} />
+
+          {/* Update */}
+          <Route path='/api/oneDeposit/:id' element={<EditDeposit />} />
+          <Route path='/api/oneWithdraw/:id' element={<EditWithdraw />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
