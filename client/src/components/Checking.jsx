@@ -26,7 +26,7 @@ const Checking = (props) => {
         }
 
         if (allExpenses[i].withdrawAmount !== undefined) {
-            total += allExpenses[i].withdrawAmount;
+            total -= allExpenses[i].withdrawAmount;
         }
     }
     console.log("Total: ", total);
